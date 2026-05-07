@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIリスキリング研修 | 「使う」から「任せる」組織へ | SoloptiLink</title>
+<meta name="description" content="社員10名以上の企業向け実践型AIリスキリング研修。助成金活用で実質負担約24.9万円〜。Claude・AIエージェント・業務自動化まで全36時間で実装。1年間Slack伴走サポート付き。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS VARIABLES
+============================================ */
+:root {
+  --navy: #050D1F;
+  --navy-mid: #0D1B3E;
+  --navy-light: #132246;
+  --blue-electric: #00A8FF;
+  --blue-mid: #1B56B0;
+  --blue-pale: #4A90D9;
+  --gold: #C9A84C;
+  --gold-light: #F0C96A;
+  --white: #FFFFFF;
+  --white-80: rgba(255,255,255,0.8);
+  --white-50: rgba(255,255,255,0.5);
+  --white-20: rgba(255,255,255,0.2);
+  --white-10: rgba(255,255,255,0.1);
+  --white-05: rgba(255,255,255,0.05);
+  --cta-green: #06C755;
+  --cta-green-hover: #04A344;
+  --danger: #E55353;
+  --text-body: rgba(255,255,255,0.85);
+  --text-muted: rgba(255,255,255,0.55);
+  --border: rgba(255,255,255,0.12);
+  --border-blue: rgba(0,168,255,0.3);
+  --glow-blue: 0 0 40px rgba(0,168,255,0.25);
+  --glow-gold: 0 0 30px rgba(201,168,76,0.3);
+}
+
+/* ============================================
+   RESET & BASE
+============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ============================================
+   GRID BACKGROUND
+============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,168,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,168,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   UTILITY
+============================================ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+.container-wide {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+.section-sm { padding: 72px 0; }
+.label-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue-electric);
+  border: 1px solid var(--border-blue);
+  padding: 6px 14px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+.label-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--blue-electric);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+.heading-xl {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.heading-lg {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.heading-md {
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.text-gold { color: var(--gold-light); }
+.text-blue { color: var(--blue-electric); }
+.text-muted { color: var(--text-muted); }
+.divider-line {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue-electric), var(--gold));
+  margin: 24px 0;
+  border-radius: 2px;
+}
+
+/* ============================================
+   NAV
+============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 0;
+  transition: all 0.3s ease;
+}
+.nav.scrolled {
+  background: rgba(5,13,31,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--blue-electric); }
+.nav-cta {
+  background: var(--cta-green);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--cta-green-hover); }
+
+/* ============================================
+   HERO / FV
+============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,168,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(27,86,176,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 80% 20%, rgba(201,168,76,0.08) 0%, transparent 50%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.hero-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 5px 12px;
+  border-radius: 2px;
+}
+.hero-title {
+  font-size: clamp(32px, 4.5vw, 58px);
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--blue-electric) 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: 16px;
+  color: var(--text-body);
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+.hero-subtitle strong {
+  color: var(--white);
+  font-weight: 700;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.hero-stat {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-stat-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, rgba(0,168,255,0.2), rgba(27,86,176,0.1));
+  border: 1px solid var(--border-blue);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.hero-stat-text { font-size: 13px; line-height: 1.4; color: var(--text-body); }
+.hero-stat-text strong { color: var(--white); font-weight: 700; font-size: 15px; }
+.cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--cta-green);
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 18px 36px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.btn-primary:hover {
+  background: var(--cta-green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(6,199,85,0.35);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 15px 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: center;
+}
+.btn-secondary:hover {
+  border-color: var(--blue-electric);
+  color: var(--blue-electric);
+  background: rgba(0,168,255,0.05);
+}
+.btn-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+}
+.hero-card-main {
+  background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+  border: 1px solid var(--border-blue);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--glow-blue), 0 40px 80px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+.hero-card-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue-electric), var(--gold), transparent);
+}
+.hero-card-number {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 96px;
+  line-height: 0.9;
+  background: linear-gradient(135deg, var(--blue-electric) 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.hero-card-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+.hero-card-items { display: flex; flex-direction: column; gap: 14px; }
+.hero-card-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-body);
+}
+.hero-card-item .check {
+  width: 22px;
+  height: 22px;
+  background: rgba(6,199,85,0.15);
+  border: 1px solid rgba(6,199,85,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--cta-green);
+}
+.hero-card-float {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: var(--glow-gold);
+}
+.hero-card-float-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 42px;
+  line-height: 1;
+  color: var(--navy);
+}
+.hero-card-float-txt {
+  font-size: 11px;
+  color: rgba(5,13,31,0.7);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   PAIN SECTION
+============================================ */
+.pain-section {
+  background: linear-gradient(180deg, var(--navy) 0%, rgba(13,27,62,0.5) 50%, var(--navy) 100%);
+}
+.pain-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 64px;
+}
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.pain-card {
+  background: linear-gradient(135deg, rgba(229,83,83,0.08) 0%, rgba(229,83,83,0.03) 100%);
+  border: 1px solid rgba(229,83,83,0.2);
+  border-radius: 12px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.pain-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--danger), transparent);
+}
+.pain-card-icon { font-size: 28px; margin-bottom: 16px; }
+.pain-card-text { font-size: 14px; color: var(--text-body); line-height: 1.7; }
+.pain-card-text strong { color: var(--white); font-weight: 700; }
+.pain-summary {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+}
+.pain-summary-text {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--white);
+}
+.pain-summary-text .highlight {
+  color: var(--blue-electric);
+}
+
+/* ============================================
+   DATA SECTION
+============================================ */
+.data-section {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 64px;
+}
+.data-card {
+  background: var(--navy-mid);
+  padding: 40px 28px;
+  text-align: center;
+}
+.data-card-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--danger);
+  margin-bottom: 8px;
+}
+.data-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.data-card-source {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 8px;
+}
+.failure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.failure-card {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 24px;
+  position: relative;
+}
+.failure-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--blue-electric);
+  margin-bottom: 12px;
+}
+.failure-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--white);
+}
+.failure-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================
+   DIFFERENCE SECTION
+============================================ */
+.diff-section { background: var(--navy); }
+.diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.diff-left .heading-lg { margin-bottom: 16px; }
+.diff-left .body-text {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.85;
+  margin-bottom: 32px;
+}
+.diff-features { display: flex; flex-direction: column; gap: 16px; }
+.diff-feature {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+.diff-feature:hover { border-color: var(--border-blue); }
+.diff-feature-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, rgba(0,168,255,0.2), rgba(27,86,176,0.1));
+  border: 1px solid var(--border-blue);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.diff-feature-body h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.diff-feature-body p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.diff-right {
+  background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+  border: 1px solid var(--border-blue);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--glow-blue);
+  position: sticky;
+  top: 100px;
+}
+.diff-right-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--blue-electric);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.diff-list { display: flex; flex-direction: column; gap: 12px; }
+.diff-list-item {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  padding: 14px;
+  background: var(--white-05);
+  border-radius: 8px;
+}
+.diff-list-item .bullet {
+  width: 8px;
+  height: 8px;
+  background: var(--blue-electric);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.diff-list-item span { color: var(--text-body); line-height: 1.5; }
+
+/* ============================================
+   WHY CLAUDE SECTION
+============================================ */
+.claude-section {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.compare-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 48px;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.compare-table th {
+  padding: 16px 20px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  border-bottom: 2px solid var(--border);
+}
+.compare-table th.highlight-col {
+  background: rgba(0,168,255,0.1);
+  border-bottom: 2px solid var(--blue-electric);
+  color: var(--blue-electric);
+}
+.compare-table td {
+  padding: 14px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.compare-table td.highlight-col {
+  background: rgba(0,168,255,0.05);
+  color: var(--white);
+  font-weight: 600;
+}
+.compare-table td.row-label {
+  text-align: left;
+  color: var(--text-body);
+  font-weight: 500;
+}
+.compare-table tr:hover td { background: var(--white-05); }
+.compare-table tr:hover td.highlight-col { background: rgba(0,168,255,0.1); }
+.claude-reasons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.claude-reason {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 24px;
+}
+.claude-reason-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--blue-electric);
+  margin-bottom: 16px;
+}
+.claude-reason h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--white);
+}
+.claude-reason p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+/* ============================================
+   BEFORE/AFTER SECTION
+============================================ */
+.beforeafter-section { background: var(--navy); }
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 56px;
+}
+.ba-card {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px;
+}
+.ba-card.after {
+  background: linear-gradient(135deg, rgba(0,168,255,0.08), rgba(27,86,176,0.05));
+  border-color: var(--border-blue);
+  box-shadow: var(--glow-blue);
+}
+.ba-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding: 6px 12px;
+  display: inline-block;
+  border-radius: 3px;
+}
+.ba-label.before-label {
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.08);
+}
+.ba-label.after-label {
+  color: var(--blue-electric);
+  background: rgba(0,168,255,0.1);
+  border: 1px solid var(--border-blue);
+}
+.ba-flow { display: flex; flex-direction: column; gap: 0; }
+.ba-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.ba-step-box {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-body);
+  position: relative;
+}
+.ba-card.after .ba-step-box {
+  background: rgba(0,168,255,0.08);
+  border-color: rgba(0,168,255,0.2);
+  color: var(--white);
+}
+.ba-step-arrow {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  margin: 0 auto;
+  position: relative;
+  left: 18px;
+}
+.ba-arrow-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+.ba-arrow-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--blue-electric), var(--blue-mid));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: var(--glow-blue);
+}
+.ba-bottom-text {
+  text-align: center;
+  margin-top: 48px;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* ============================================
+   COURSE SECTION
+============================================ */
+.course-section {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.course-card {
+  border-radius: 16px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--white-05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.course-card.course-a::before { background: linear-gradient(90deg, var(--blue-electric), var(--blue-pale)); }
+.course-card.course-b::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.course-card.course-c::before { background: linear-gradient(90deg, #9B59B6, #E91E8C); }
+.course-card.course-c {
+  border-color: rgba(155,89,182,0.3);
+  background: linear-gradient(135deg, rgba(155,89,182,0.06), rgba(233,30,140,0.04));
+}
+.course-tag {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.course-a .course-tag { color: var(--blue-electric); }
+.course-b .course-tag { color: var(--gold-light); }
+.course-c .course-tag { color: #C084E8; }
+.course-tool {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  padding: 4px 10px;
+  background: var(--white-05);
+  border-radius: 4px;
+  display: inline-block;
+}
+.course-name {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+.course-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.course-item {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-body);
+}
+.course-item .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.course-a .dot { background: var(--blue-electric); }
+.course-b .dot { background: var(--gold-light); }
+.course-c .dot { background: #C084E8; }
+.course-deliverable {
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.course-deliverable-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.course-deliverable-text { font-size: 13px; color: var(--text-body); }
+.course-hours {
+  position: absolute;
+  top: 32px;
+  right: 28px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 40px;
+  line-height: 1;
+  opacity: 0.15;
+}
+
+/* ============================================
+   DESIGN PHILOSOPHY
+============================================ */
+.design-section { background: var(--navy); }
+.design-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+.design-principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.design-principle {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.design-principle:hover { border-color: var(--border-blue); }
+.design-principle-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 48px;
+  color: var(--blue-electric);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.design-principle h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.design-principle p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ============================================
+   SUPPORT SECTION
+============================================ */
+.support-section {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.support-card-main {
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  border: 1px solid var(--border-blue);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--glow-blue);
+}
+.support-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+.support-items { display: flex; flex-direction: column; gap: 16px; }
+.support-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: var(--white-05);
+  border-radius: 8px;
+}
+.support-item-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(0,168,255,0.1);
+  border: 1px solid var(--border-blue);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.support-item-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.support-item-body p { font-size: 13px; color: var(--text-muted); }
+.support-features { display: flex; flex-direction: column; gap: 20px; }
+.support-feature h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.support-feature p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.support-feature .highlight-text { color: var(--blue-electric); }
+.support-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
+.support-list-item {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-body);
+}
+.support-list-item::before {
+  content: '✓';
+  color: var(--cta-green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   SUBSIDY SECTION
+============================================ */
+.subsidy-section { background: var(--navy); }
+.subsidy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.subsidy-visual {
+  position: relative;
+}
+.subsidy-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.subsidy-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.subsidy-row-label { font-size: 13px; color: var(--text-muted); width: 80px; flex-shrink: 0; text-align: right; }
+.subsidy-bar-wrap { flex: 1; }
+.subsidy-bar {
+  height: 48px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-weight: 700;
+  font-size: 14px;
+  position: relative;
+}
+.subsidy-bar.original { background: rgba(255,255,255,0.12); width: 100%; color: var(--white); }
+.subsidy-bar.grant { background: rgba(229,83,83,0.7); width: 78%; color: white; }
+.subsidy-bar.wage { background: rgba(229,83,83,0.4); width: 35%; color: white; }
+.subsidy-bar.net { background: linear-gradient(135deg, var(--blue-electric), var(--blue-mid)); width: 22%; color: white; }
+.subsidy-result {
+  margin-top: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(0,168,255,0.12), rgba(27,86,176,0.08));
+  border: 1px solid var(--border-blue);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: var(--glow-blue);
+}
+.subsidy-result-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+.subsidy-result-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 56px;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--blue-electric), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subsidy-result-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.subsidy-info { display: flex; flex-direction: column; gap: 24px; }
+.subsidy-info-card {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+.subsidy-info-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+.subsidy-info-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.subsidy-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.subsidy-step {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  padding-bottom: 24px;
+}
+.subsidy-step:last-child { padding-bottom: 0; }
+.subsidy-step-dot {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--blue-electric), var(--blue-mid));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.subsidy-step::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 17px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.subsidy-step:last-child::before { display: none; }
+.subsidy-step-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; padding-top: 8px; }
+.subsidy-step-body p { font-size: 13px; color: var(--text-muted); }
+
+/* ============================================
+   COMPARISON TABLE
+============================================ */
+.comparison-section {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.comp-table-wrap { overflow-x: auto; margin-top: 56px; }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.comp-table th, .comp-table td {
+  padding: 16px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.comp-table th {
+  font-weight: 700;
+  font-size: 15px;
+  background: var(--navy-mid);
+  position: sticky;
+  top: 0;
+}
+.comp-table th.our-col {
+  background: rgba(0,168,255,0.12);
+  color: var(--blue-electric);
+  border-bottom: 2px solid var(--blue-electric);
+}
+.comp-table td.our-col {
+  background: rgba(0,168,255,0.05);
+  font-weight: 600;
+  color: var(--white);
+}
+.comp-table td.row-label { text-align: left; color: var(--text-body); }
+.comp-table .good { color: var(--cta-green); font-weight: 700; }
+.comp-table .bad { color: var(--text-muted); }
+.comp-table tbody tr:hover td { background: var(--white-05); }
+.comp-table tbody tr:hover td.our-col { background: rgba(0,168,255,0.1); }
+.comp-summary {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px 40px;
+  background: linear-gradient(135deg, rgba(0,168,255,0.08), rgba(27,86,176,0.05));
+  border: 1px solid var(--border-blue);
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+.comp-summary span { color: var(--blue-electric); }
+
+/* ============================================
+   FLOW SECTION
+============================================ */
+.flow-section { background: var(--navy); }
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  margin-top: 56px;
+  position: relative;
+}
+.flow-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue-electric), var(--gold));
+  z-index: 0;
+}
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.flow-step-dot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-electric), var(--blue-mid));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 16px;
+  border: 3px solid var(--navy);
+  box-shadow: var(--glow-blue);
+}
+.flow-step h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.flow-step p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+/* ============================================
+   CEO MESSAGE
+============================================ */
+.ceo-section {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.ceo-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: center;
+}
+.ceo-card {
+  background: var(--white-05);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px;
+  text-align: center;
+}
+.ceo-avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue-electric));
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.ceo-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.ceo-title { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+.ceo-tagline {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--blue-electric);
+  padding: 12px;
+  border: 1px solid var(--border-blue);
+  border-radius: 8px;
+  line-height: 1.6;
+}
+.ceo-career { display: flex; flex-direction: column; gap: 12px; }
+.ceo-career-item {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  padding: 10px;
+  background: var(--white-05);
+  border-radius: 6px;
+}
+.ceo-career-item .age { color: var(--blue-electric); font-weight: 700; font-size: 11px; flex-shrink: 0; padding-top: 2px; }
+.ceo-career-item .desc { color: var(--text-muted); line-height: 1.5; }
+.ceo-message {
+  padding: 40px;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  border: 1px solid var(--border-blue);
+  border-radius: 16px;
+  box-shadow: var(--glow-blue);
+}
+.ceo-message-text {
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.8;
+  color: var(--white);
+  position: relative;
+}
+.ceo-message-text::before {
+  content: '\201C';
+  font-size: 80px;
+  color: rgba(0,168,255,0.2);
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+
+/* ============================================
+   FINAL CTA
+============================================ */
+.final-cta {
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 100%, rgba(0,168,255,0.15) 0%, transparent 60%);
+}
+.final-cta-inner {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.final-cta-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.final-cta-sub {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+.final-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.final-cta-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.final-cta-note-item::before { content: '✓ '; color: var(--cta-green); }
+
+/* ============================================
+   FOOTER
+============================================ */
+.footer {
+  background: rgba(0,0,0,0.4);
+  border-top: 1px solid var(--border);
+  padding: 48px 0 32px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 40px;
+}
+.footer-logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.footer-logo span { color: var(--blue-electric); }
+.footer-tagline { font-size: 13px; color: var(--text-muted); }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+.footer-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   SECTION HEADER STYLES
+============================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-header .label-tag { margin-bottom: 16px; }
+.section-header .heading-lg { margin-bottom: 16px; }
+.section-header .sub-text {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+  .hero-visual { display: none; }
+  .pain-grid { grid-template-columns: repeat(2, 1fr); }
+  .data-grid { grid-template-columns: repeat(2, 1fr); }
+  .diff-grid { grid-template-columns: 1fr; }
+  .diff-right { position: static; }
+  .claude-reasons { grid-template-columns: 1fr 1fr; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .ba-arrow-mid { padding-top: 0; transform: rotate(90deg); }
+  .course-grid { grid-template-columns: 1fr; }
+  .design-header { grid-template-columns: 1fr; }
+  .design-principles { grid-template-columns: repeat(2, 1fr); }
+  .support-grid { grid-template-columns: 1fr; }
+  .subsidy-grid { grid-template-columns: 1fr; }
+  .flow-steps { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .flow-steps::before { display: none; }
+  .ceo-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .section { padding: 72px 0; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .data-grid { grid-template-columns: 1fr 1fr; }
+  .failure-grid { grid-template-columns: 1fr; }
+  .claude-reasons { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .design-principles { grid-template-columns: 1fr; }
+  .flow-steps { grid-template-columns: repeat(2, 1fr); }
+  .subsidy-bars .subsidy-bar.grant { width: 100%; }
+  .subsidy-bars .subsidy-bar.wage { width: 60%; }
+  .subsidy-bars .subsidy-bar.net { width: 35%; }
+  .support-list { grid-template-columns: 1fr; }
+  .final-cta-buttons { flex-direction: column; align-items: center; }
+  .final-cta-buttons .btn-primary, .final-cta-buttons .btn-secondary { width: 100%; max-width: 360px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .nav-logo { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+   NAV
+============================================ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">Solopti<span>Link</span></div>
+      <a href="#cta" class="nav-cta">無料相談を予約する</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================
+   HERO / FV
+============================================ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="hero-badge">社員10名以上の企業向け</span>
+          <span class="hero-badge" style="color:var(--gold-light); border-color:rgba(201,168,76,0.4);">助成金最大75%</span>
+        </div>
+        <h1 class="hero-title">
+          パソコン1台で、<br>
+          <span class="accent">社員1人分の生産性</span><br>
+          を増やす時代へ。
+        </h1>
+        <p class="hero-subtitle">
+          「AIを使う会社」から、<strong>「AIに任せられる会社」</strong>へ。<br>
+          Claude・AIエージェント・業務自動化まで実装する、<br>実践型AIリスキリング研修。
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-icon">⏱</div>
+            <div class="hero-stat-text"><strong>全36時間</strong><br>3コース×12h 実務特化</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon">💰</div>
+            <div class="hero-stat-text"><strong>実質 約24.9万円〜</strong><br>助成金75%+賃金助成</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon">💬</div>
+            <div class="hero-stat-text"><strong>1年間 Slack伴走</strong><br>3名体制でフォローアップ</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon">🤖</div>
+            <div class="hero-stat-text"><strong>AIエージェント実装</strong><br>ノーコード・非エンジニア対応</div>
+          </div>
+        </div>
+        <div class="cta-group">
+          <a href="#cta" class="btn-primary">▶ 無料相談を予約する（30分）</a>
+          <a href="#subsidy" class="btn-secondary">助成金シミュレーションを依頼する</a>
+          <p class="btn-note">※ 対応エリア：全国（オンライン対応可）</p>
+        </div>
+      </div>
+      <div class="hero-visual fade-in fade-in-delay-2">
+        <div class="hero-card-main">
+          <div class="hero-card-number">36H</div>
+          <div class="hero-card-label">実務特化プログラム / 全3コース</div>
+          <div class="hero-card-items">
+            <div class="hero-card-item"><span class="check">✓</span>提案書・競合分析の完全自動化</div>
+            <div class="hero-card-item"><span class="check">✓</span>Excel/CSV データ分析・文書生成</div>
+            <div class="hero-card-item"><span class="check">✓</span>AIエージェント設計・外部API連携</div>
+            <div class="hero-card-item"><span class="check">✓</span>1年間 Slack 伴走サポート付き</div>
+            <div class="hero-card-item"><span class="check">✓</span>助成金申請 全面代行サポート</div>
+          </div>
+          <div class="hero-card-float">
+            <div class="hero-card-float-num">¥24.9万</div>
+            <div class="hero-card-float-txt">実質負担（中小企業）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   PAIN SECTION
+============================================ -->
+<section class="section pain-section" id="pain">
+  <div class="container">
+    <div class="pain-intro fade-in">
+      <span class="label-tag">Current Situation</span>
+      <h2 class="heading-lg">こんな課題、<br>社内で起きていませんか？</h2>
+      <div class="divider-line" style="margin: 20px auto;"></div>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card fade-in">
+        <div class="pain-card-icon">😔</div>
+        <div class="pain-card-text"><strong>AI導入したが、現場で誰も使っていない。</strong><br>DX担当だけが詳しく、現場に浸透しない。</div>
+      </div>
+      <div class="pain-card fade-in fade-in-delay-1">
+        <div class="pain-card-icon">⏸</div>
+        <div class="pain-card-text"><strong>ChatGPTを試しただけで終わっている。</strong><br>「触ってみた」で止まり、業務が変わらない。</div>
+      </div>
+      <div class="pain-card fade-in fade-in-delay-2">
+        <div class="pain-card-icon">📝</div>
+        <div class="pain-card-text"><strong>提案書・報告書作成に時間を奪われている。</strong><br>ルーティン業務から抜け出せない毎日。</div>
+      </div>
+      <div class="pain-card fade-in">
+        <div class="pain-card-icon">💸</div>
+        <div class="pain-card-text"><strong>採用コストだけが増え続けている。</strong><br>人を増やしても生産性が上がらない悪循環。</div>
+      </div>
+      <div class="pain-card fade-in fade-in-delay-1">
+        <div class="pain-card-icon">❓</div>
+        <div class="pain-card-text"><strong>AI活用したいが、何から始めればいいかわからない。</strong><br>情報が多すぎて、自社に何が合うか判断できない。</div>
+      </div>
+      <div class="pain-card fade-in fade-in-delay-2">
+        <div class="pain-card-icon">📉</div>
+        <div class="pain-card-text"><strong>研修を受けたが、3ヶ月後には誰も使っていない。</strong><br>「研修後に質問先がない」が定着失敗の最大原因。</div>
+      </div>
+    </div>
+    <div class="pain-summary fade-in" style="margin-top: 40px;">
+      <p class="pain-summary-text">
+        多くの企業がAI導入に失敗する理由は、<br>
+        「ツール導入」で止まっているからです。<br>
+        必要なのは、<span class="highlight">「現場で使える業務設計」まで落とし込むこと</span>。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   DATA SECTION
+============================================ -->
+<section class="section-sm data-section" id="data">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Data & Reality</span>
+      <h2 class="heading-lg">AI導入企業の、冷厳な現実</h2>
+      <p class="sub-text">「触って終わり」「一部の社員しか使えない」「現場業務に組み込まれていない」状態で止まっています。</p>
+    </div>
+    <div class="data-grid fade-in">
+      <div class="data-card">
+        <div class="data-card-num">80%</div>
+        <div class="data-card-desc">研修内容が現場業務に定着しない企業</div>
+        <div class="data-card-source">出典：シェルパス調査</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-num">95%</div>
+        <div class="data-card-desc">生成AI投資でROIが未達の企業</div>
+        <div class="data-card-source">出典：MIT / PwC</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-num">27%</div>
+        <div class="data-card-desc">日本の生成AI個人利用率（低迷）</div>
+        <div class="data-card-source">出典：総務省</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-num">60%</div>
+        <div class="data-card-desc">効果測定すら行えていない日本企業</div>
+        <div class="data-card-source">出典：PwC</div>
+      </div>
+    </div>
+    <div class="failure-grid fade-in">
+      <div class="failure-card">
+        <div class="failure-num">REASON 01</div>
+        <div class="failure-title">ChatGPT偏重</div>
+        <div class="failure-desc">個人利用レベルで止まり、法人業務への実装設計まで踏み込めていない。B2C向けAIを、B2B業務に使おうとする根本的なミスマッチ。</div>
+      </div>
+      <div class="failure-card">
+        <div class="failure-num">REASON 02</div>
+        <div class="failure-title">短時間・座学中心</div>
+        <div class="failure-desc">「AIを知る」だけで終わり、現場オペレーションが変わらない。1日完結型の研修では、習慣化は起きない。</div>
+      </div>
+      <div class="failure-card">
+        <div class="failure-num">REASON 03</div>
+        <div class="failure-title">伴走支援不足</div>
+        <div class="failure-desc">研修後に質問先がなく、数ヶ月後には誰も使わなくなる。「定着」は研修当日ではなく、その後に決まる。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   DIFFERENCE SECTION
+============================================ -->
+<section class="section diff-section" id="about">
+  <div class="container">
+    <div class="diff-grid">
+      <div class="diff-left">
+        <span class="label-tag">Our Approach</span>
+        <h2 class="heading-lg">この研修は<br>"AIツール講座"では<br>ありません。</h2>
+        <div class="divider-line"></div>
+        <p class="body-text">
+          一般的なAI研修は、「AIをどう使うか」で終わります。<br><br>
+          しかし本研修では、提案書作成から競合分析、AIエージェント構築まで、<strong style="color:var(--white)">実務ベースで業務そのものを再設計</strong>します。<br><br>
+          「AIを触れる社員」ではなく、<strong style="color:var(--blue-electric)">「AIを戦力化できる社員」</strong>を育成します。
+        </p>
+        <div class="diff-features">
+          <div class="diff-feature fade-in">
+            <div class="diff-feature-icon">📋</div>
+            <div class="diff-feature-body">
+              <h4>提案書・競合分析の自動化</h4>
+              <p>Claude を使った資料生成・リサーチの完全自動化。営業工数を劇的に削減。</p>
+            </div>
+          </div>
+          <div class="diff-feature fade-in fade-in-delay-1">
+            <div class="diff-feature-icon">📊</div>
+            <div class="diff-feature-body">
+              <h4>データ分析・社内ナレッジ整理</h4>
+              <p>Excel/CSV 分析から議事録、マニュアル作成まで。バックオフィスの定型業務を一掃。</p>
+            </div>
+          </div>
+          <div class="diff-feature fade-in fade-in-delay-2">
+            <div class="diff-feature-icon">🤖</div>
+            <div class="diff-feature-body">
+              <h4>AIエージェント構築・自動化</h4>
+              <p>OpenClaw を使った自律型ワークフロー実装。人は最終確認のみ。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diff-right fade-in fade-in-delay-1">
+        <div class="diff-right-title">実装する業務領域</div>
+        <div class="diff-list">
+          <div class="diff-list-item"><div class="bullet"></div><span>提案書生成・テンプレート自動化</span></div>
+          <div class="diff-list-item"><div class="bullet"></div><span>競合分析・リサーチ業務</span></div>
+          <div class="diff-list-item"><div class="bullet"></div><span>レポート・議事録の自動生成</span></div>
+          <div class="diff-list-item"><div class="bullet"></div><span>Excel / CSV データ分析</span></div>
+          <div class="diff-list-item"><div class="bullet"></div><span>社内ナレッジ整理・マニュアル作成</span></div>
+          <div class="diff-list-item"><div class="bullet"></div><span>ワークフロー構築・業務改善設計</span></div>
+          <div class="diff-list-item"><div class="bullet"></div><span>AIエージェント設計・外部ツール連携</span></div>
+          <div class="diff-list-item"><div class="bullet"></div><span>自動ワークフロー・全社AI設計</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   WHY CLAUDE SECTION
+============================================ -->
+<section class="section claude-section" id="claude">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Why Claude</span>
+      <h2 class="heading-lg">なぜ<span class="text-blue">Claude</span>中心なのか</h2>
+      <p class="sub-text">「ChatGPTで研修」は、論理的な最適解ではありません。法人業務に特化して設計されたClaudeだからこそ、BtoB実装が機能する。</p>
+    </div>
+    <div class="compare-table-wrap fade-in">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>ChatGPT (OpenAI)</th>
+            <th>Gemini (Google)</th>
+            <th class="highlight-col">Claude (Anthropic)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">主な設計思想</td>
+            <td>B2C / 個人向け</td>
+            <td>Google経済圏内</td>
+            <td class="highlight-col">B2B / 法人向け</td>
+          </tr>
+          <tr>
+            <td class="row-label">長文処理</td>
+            <td>○</td>
+            <td>○</td>
+            <td class="highlight-col">◎ 業界最高水準</td>
+          </tr>
+          <tr>
+            <td class="row-label">社内文書読解</td>
+            <td>△</td>
+            <td>△</td>
+            <td class="highlight-col">◎ 最適化済み</td>
+          </tr>
+          <tr>
+            <td class="row-label">AIエージェント適性</td>
+            <td>△</td>
+            <td>△</td>
+            <td class="highlight-col">◎ 業界標準</td>
+          </tr>
+          <tr>
+            <td class="row-label">顧客データ学習</td>
+            <td>学習する（リスクあり）</td>
+            <td>一部学習</td>
+            <td class="highlight-col">学習しない（安全）</td>
+          </tr>
+          <tr>
+            <td class="row-label">法人実装</td>
+            <td>△ 副次的</td>
+            <td>△ Google外で限定的</td>
+            <td class="highlight-col">◎ 本命・最適化済み</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="claude-reasons">
+      <div class="claude-reason fade-in">
+        <div class="claude-reason-num">01</div>
+        <h4>顧客データを学習しない</h4>
+        <p>企業データをAI学習に利用しない設計。情報漏洩リスクを抑えながら、安全に法人利用できる環境を実現。コンプライアンス要件にも対応。</p>
+      </div>
+      <div class="claude-reason fade-in fade-in-delay-1">
+        <div class="claude-reason-num">02</div>
+        <h4>世界主要AIプロダクトの中核技術</h4>
+        <p>Notion AI・Cursor・Perplexity・各種AIエージェントなど、先進的ツールの心臓部はすべてClaudeで稼働。業界のデファクトスタンダード。</p>
+      </div>
+      <div class="claude-reason fade-in fade-in-delay-2">
+        <div class="claude-reason-num">03</div>
+        <h4>長文・複雑業務に圧倒的な強み</h4>
+        <p>提案書生成・契約書レビュー・議事録整理・リサーチ・マニュアル作成・業務フロー整理など、BtoB業務との相性が非常に高い。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   BEFORE/AFTER SECTION
+============================================ -->
+<section class="section beforeafter-section" id="agent">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Before / After</span>
+      <h2 class="heading-lg">「使う」から<span class="text-blue">「任せる」</span>へ</h2>
+      <p class="sub-text">AIエージェントによる業務自動化まで実装。人は最終確認のみ。</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-label before-label">Before — 手動介入型</div>
+        <div class="ba-flow">
+          <div class="ba-step"><div class="ba-step-box">👤 担当者が毎回プロンプトを入力</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box">🤖 AIが出力</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box">👤 人が確認・修正</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box">👤 人が資料化・共有</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box" style="border-color: rgba(229,83,83,0.3); color: var(--danger);">⟳ 次回も同じ作業を繰り返す</div></div>
+        </div>
+      </div>
+      <div class="ba-arrow-mid fade-in">
+        <div class="ba-arrow-icon">→</div>
+      </div>
+      <div class="ba-card after">
+        <div class="ba-label after-label">After — AIエージェント型</div>
+        <div class="ba-flow">
+          <div class="ba-step"><div class="ba-step-box">🤖 AIエージェントが情報収集</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box">🤖 自動分析・判断</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box">🤖 資料・レポートを生成</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box">🤖 社内共有まで自動実行</div><div class="ba-step-arrow"></div></div>
+          <div class="ba-step"><div class="ba-step-box" style="border-color: rgba(6,199,85,0.4); color: var(--cta-green);">✓ 人は最終確認のみ</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="ba-bottom-text fade-in">
+      パソコン1台で、<span class="text-blue">社員1人分の生産性</span>を増やす。<br>
+      <span style="color:var(--text-muted); font-size:0.8em; font-weight:400;">これが、AIエージェント時代の経営です。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   COURSE SECTION
+============================================ -->
+<section class="section course-section" id="course">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Program</span>
+      <h2 class="heading-lg">実務ベースで設計された<br>3コース × 12時間</h2>
+      <p class="sub-text">全36時間。毎回必ず「持ち帰れる成果物」を作成。講義40% / ハンズオン・実習60%の徹底した実践設計。</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card course-a fade-in">
+        <div class="course-hours">12H</div>
+        <div class="course-tag">Course A</div>
+        <div class="course-tool">Tool: Claude Desktop</div>
+        <div class="course-name">営業AI活用編</div>
+        <div class="course-items">
+          <div class="course-item"><div class="dot"></div>提案書・営業資料の自動生成</div>
+          <div class="course-item"><div class="dot"></div>競合分析・リサーチ高速化</div>
+          <div class="course-item"><div class="dot"></div>Projects・MCP連携</div>
+          <div class="course-item"><div class="dot"></div>顧客分析レポートの自動化</div>
+        </div>
+        <div class="course-deliverable">
+          <div class="course-deliverable-label">成果物</div>
+          <div class="course-deliverable-text">AI営業資料ポートフォリオ・競合分析レポート</div>
+        </div>
+      </div>
+      <div class="course-card course-b fade-in fade-in-delay-1">
+        <div class="course-hours">12H</div>
+        <div class="course-tag">Course B</div>
+        <div class="course-tool">Tool: Claude Desktop</div>
+        <div class="course-name">業務効率化編</div>
+        <div class="course-items">
+          <div class="course-item"><div class="dot"></div>Excel / CSV データ分析</div>
+          <div class="course-item"><div class="dot"></div>議事録・社内文書の自動化</div>
+          <div class="course-item"><div class="dot"></div>業務改善設計・フロー整理</div>
+          <div class="course-item"><div class="dot"></div>バックオフィス定型業務削減</div>
+        </div>
+        <div class="course-deliverable">
+          <div class="course-deliverable-label">成果物</div>
+          <div class="course-deliverable-text">業務文書テンプレート集・業務改善計画</div>
+        </div>
+      </div>
+      <div class="course-card course-c fade-in fade-in-delay-2">
+        <div class="course-hours">12H</div>
+        <div class="course-tag">Course C</div>
+        <div class="course-tool">Tool: OpenClaw (AI Agents)</div>
+        <div class="course-name">完全業務<br>自動化編</div>
+        <div class="course-items">
+          <div class="course-item"><div class="dot"></div>AIエージェント構築・設計</div>
+          <div class="course-item"><div class="dot"></div>外部ツール・API連携</div>
+          <div class="course-item"><div class="dot"></div>自律型ワークフロー構築</div>
+          <div class="course-item"><div class="dot"></div>全社AI設計・ロードマップ</div>
+        </div>
+        <div class="course-deliverable">
+          <div class="course-deliverable-label">成果物</div>
+          <div class="course-deliverable-text">自律AIエージェント環境・全社AIロードマップ</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 48px; background: var(--white-05); border: 1px solid var(--border); border-radius: 12px; padding: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="fade-in">
+      <div style="text-align:center;">
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">王道型（全社員）</div>
+        <div style="font-size:15px; font-weight:700; color:var(--blue-electric);">A → B → C（段階的深化）</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">管理部門型（経理・人事）</div>
+        <div style="font-size:15px; font-weight:700; color:var(--gold-light);">B → A → C（効率化起点）</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">情シス型（DX推進）</div>
+        <div style="font-size:15px; font-weight:700; color:#C084E8;">C → A → B（自動化起点）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   DESIGN PHILOSOPHY
+============================================ -->
+<section class="section design-section">
+  <div class="container">
+    <div class="design-header">
+      <div>
+        <span class="label-tag">Design Principle</span>
+        <h2 class="heading-lg">現場で活きる人材を育てる<br>「6つの設計思想」</h2>
+        <div class="divider-line"></div>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.8;">
+          「研修後に使われなくなる」を防ぐための設計。<br>
+          本当に重要なのは、研修後にどれだけ現場が変わるか。
+        </p>
+      </div>
+      <div style="background: var(--white-05); border: 1px solid var(--border); border-radius:12px; padding:32px;">
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:16px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">受講スケジュール</div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="font-size:13px; font-weight:700; margin-bottom:6px; color:var(--white);">最短プラン（1日6h×2日）</div>
+            <div style="height:8px; background: linear-gradient(90deg, var(--blue-electric), var(--blue-mid)); border-radius:4px; width:25%;"></div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">1週間完了 / 集中・ROI最大化</div>
+          </div>
+          <div>
+            <div style="font-size:13px; font-weight:700; margin-bottom:6px; color:var(--white);">標準プラン（1日4h×3日）</div>
+            <div style="height:8px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius:4px; width:55%;"></div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">1ヶ月完了 / バランス・通常業務と両立</div>
+          </div>
+          <div>
+            <div style="font-size:13px; font-weight:700; margin-bottom:6px; color:var(--white);">分散プラン（1日3h×4日）</div>
+            <div style="height:8px; background: linear-gradient(90deg, #9B59B6, #C084E8); border-radius:4px; width:100%;"></div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">2ヶ月完了 / 負担最小・じっくり定着</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="design-principles">
+      <div class="design-principle fade-in">
+        <div class="design-principle-num">01</div>
+        <h4>1年間の伴走支援</h4>
+        <p>月1回×12回の長期伴走で「定着まで走る」。研修で終わらせない。</p>
+      </div>
+      <div class="design-principle fade-in fade-in-delay-1">
+        <div class="design-principle-num">02</div>
+        <h4>全GUI・全職種対応</h4>
+        <p>ターミナル不要。営業から経営層まで誰でも実装可能。プログラミング経験ゼロでOK。</p>
+      </div>
+      <div class="design-principle fade-in fade-in-delay-2">
+        <div class="design-principle-num">03</div>
+        <h4>オムニバス3コース構成</h4>
+        <p>部門別最適化と回転率を両立。職種・目的に合わせた受講ルート設計。</p>
+      </div>
+      <div class="design-principle fade-in">
+        <div class="design-principle-num">04</div>
+        <h4>自社業務ベース実習</h4>
+        <p>汎用例題ではなく、御社の実業務を題材に即日実装。明日から使える成果物を持ち帰る。</p>
+      </div>
+      <div class="design-principle fade-in fade-in-delay-1">
+        <div class="design-principle-num">05</div>
+        <h4>ハンズオン60%</h4>
+        <p>「知識」ではなく「使える力」。講義40%・実習60%の徹底。毎回必ず成果物を作成。</p>
+      </div>
+      <div class="design-principle fade-in fade-in-delay-2">
+        <div class="design-principle-num">06</div>
+        <h4>Slack伴走サポート</h4>
+        <p>いつでも質問可能。リアルタイムで業務適用の悩みを解決。1年間のチャンネルを無料提供。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   SUPPORT SECTION
+============================================ -->
+<section class="section support-section" id="support">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Support System</span>
+      <h2 class="heading-lg">「研修後に使われなくなる」<br>を防ぐ伴走体制</h2>
+    </div>
+    <div class="support-grid">
+      <div class="support-card-main fade-in">
+        <div class="support-title">3名体制サポートシステム</div>
+        <div class="support-items">
+          <div class="support-item">
+            <div class="support-item-icon">👨‍🏫</div>
+            <div class="support-item-body">
+              <h4>講師</h4>
+              <p>実務・業務設計支援。AI活用の実装から現場定着まで伴走。</p>
+            </div>
+          </div>
+          <div class="support-item">
+            <div class="support-item-icon">🔧</div>
+            <div class="support-item-body">
+              <h4>テクニカルサポート</h4>
+              <p>環境構築・ツール支援。セットアップから連携設定まで全面サポート。</p>
+            </div>
+          </div>
+          <div class="support-item">
+            <div class="support-item-icon">📋</div>
+            <div class="support-item-body">
+              <h4>運営サポート</h4>
+              <p>進行・定着・フォローアップ。助成金申請の全面代行も担当。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="support-features fade-in fade-in-delay-1">
+        <div class="support-feature">
+          <h3>1年間、<span class="highlight-text">現場に並走</span>します。</h3>
+          <p>研修が終わっても、それは始まりに過ぎません。現場に定着するまで、私たちは一緒に走り続けます。</p>
+        </div>
+        <div class="support-list">
+          <div class="support-list-item">1年間Slackサポート</div>
+          <div class="support-list-item">全12回 録画視聴</div>
+          <div class="support-list-item">AI活用相談</div>
+          <div class="support-list-item">社内定着支援</div>
+          <div class="support-list-item">実務相談対応</div>
+          <div class="support-list-item">最新AI情報共有</div>
+          <div class="support-list-item">認定制度対応</div>
+          <div class="support-list-item">助成金申請代行</div>
+        </div>
+        <div style="padding: 24px; background: linear-gradient(135deg, rgba(6,199,85,0.08), rgba(6,199,85,0.04)); border: 1px solid rgba(6,199,85,0.2); border-radius: 12px; margin-top: 8px;">
+          <div style="font-size:13px; color: var(--cta-green); font-weight:700; margin-bottom:8px;">認定制度あり</div>
+          <div style="font-size:13px; color:var(--text-muted); line-height:1.7;">
+            Practitioner → Advanced → Master の3段階認定。社内評価制度への組み込み・DX推進人材の可視化に活用可能。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   SUBSIDY SECTION
+============================================ -->
+<section class="section subsidy-section" id="subsidy">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Subsidy</span>
+      <h2 class="heading-lg">助成金活用で<br>実質負担を約<span class="text-gold">80%</span>圧縮</h2>
+      <p class="sub-text">厚労省「事業展開等リスキリング支援コース」対象。申請代行は弊社が全面サポート。</p>
+    </div>
+    <div class="subsidy-grid">
+      <div class="subsidy-visual fade-in">
+        <div class="subsidy-bars">
+          <div class="subsidy-row">
+            <div class="subsidy-row-label">研修費</div>
+            <div class="subsidy-bar-wrap"><div class="subsidy-bar original">¥1,140,000（税抜）</div></div>
+          </div>
+          <div class="subsidy-row">
+            <div class="subsidy-row-label">助成金</div>
+            <div class="subsidy-bar-wrap"><div class="subsidy-bar grant">− ¥891,000（75%）</div></div>
+          </div>
+          <div class="subsidy-row">
+            <div class="subsidy-row-label">賃金助成</div>
+            <div class="subsidy-bar-wrap"><div class="subsidy-bar wage">− ¥36,000</div></div>
+          </div>
+          <div class="subsidy-row">
+            <div class="subsidy-row-label" style="color:var(--blue-electric); font-weight:700;">実質負担</div>
+            <div class="subsidy-bar-wrap"><div class="subsidy-bar net">≈ ¥213,000</div></div>
+          </div>
+        </div>
+        <div class="subsidy-result">
+          <div class="subsidy-result-label">中小企業 / 全3コース受講時の実質負担</div>
+          <div class="subsidy-result-num">¥24.9万</div>
+          <div class="subsidy-result-sub">※1コース単独受講の場合：研修費¥380,000 → 実質約¥8.3万</div>
+        </div>
+      </div>
+      <div class="subsidy-info fade-in fade-in-delay-1">
+        <div class="subsidy-info-card">
+          <h4>対象企業・要件</h4>
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text-muted);">
+            <div style="display:flex; gap:8px;"><span style="color:var(--cta-green); flex-shrink:0;">✓</span> 雇用保険適用事業所であること</div>
+            <div style="display:flex; gap:8px;"><span style="color:var(--cta-green); flex-shrink:0;">✓</span> 受講者が雇用保険被保険者であること</div>
+            <div style="display:flex; gap:8px;"><span style="color:var(--cta-green); flex-shrink:0;">✓</span> OFF-JT 10時間以上（本研修はクリア）</div>
+            <div style="display:flex; gap:8px;"><span style="color:var(--cta-green); flex-shrink:0;">✓</span> 計画届を訓練開始1ヶ月前までに提出（弊社代行）</div>
+          </div>
+        </div>
+        <h4 style="font-size:17px; font-weight:700; margin: 8px 0;">導入までの流れ</h4>
+        <div class="subsidy-steps">
+          <div class="subsidy-step">
+            <div class="subsidy-step-dot">01</div>
+            <div class="subsidy-step-body">
+              <h4>無料相談・助成金シミュレーション</h4>
+              <p>御社の状況を確認し、助成金対象か診断します。</p>
+            </div>
+          </div>
+          <div class="subsidy-step">
+            <div class="subsidy-step-dot">02</div>
+            <div class="subsidy-step-body">
+              <h4>計画提出（弊社が労働局へ代行）</h4>
+              <p>申請書類の作成から提出まで全て代行。</p>
+            </div>
+          </div>
+          <div class="subsidy-step">
+            <div class="subsidy-step-dot">03</div>
+            <div class="subsidy-step-body">
+              <h4>研修実施（選択コースを実施 / 最短1週間）</h4>
+              <p>Zoom ライブ + 翌日録画配信。全国対応。</p>
+            </div>
+          </div>
+          <div class="subsidy-step">
+            <div class="subsidy-step-dot">04</div>
+            <div class="subsidy-step-body">
+              <h4>完了報告（弊社代行） → 助成金入金</h4>
+              <p>御社口座へ約78%が還元。手続きは全て弊社担当。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   COMPARISON TABLE
+============================================ -->
+<section class="section comparison-section" id="comparison">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Comparison</span>
+      <h2 class="heading-lg">他社AI研修との、<br>圧倒的な違い</h2>
+    </div>
+    <div class="comp-table-wrap fade-in">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th class="our-col">弊社研修</th>
+            <th>大手教育系</th>
+            <th>キカガク系</th>
+            <th>新興系</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">研修時間</td>
+            <td class="our-col good">36時間（1年伴走）</td>
+            <td class="bad">2-4時間/半日</td>
+            <td class="bad">55-275時間</td>
+            <td class="bad">1日完結</td>
+          </tr>
+          <tr>
+            <td class="row-label">対象AI</td>
+            <td class="our-col good">Claude × 3社並列</td>
+            <td class="bad">ChatGPT中心</td>
+            <td class="bad">ChatGPT中心</td>
+            <td class="bad">Claude単独</td>
+          </tr>
+          <tr>
+            <td class="row-label">AIエージェント</td>
+            <td class="our-col good">✓ コースCで実装</td>
+            <td class="bad">× 未対応</td>
+            <td class="bad">× 未対応</td>
+            <td class="bad">△ 一部のみ</td>
+          </tr>
+          <tr>
+            <td class="row-label">業務自動化</td>
+            <td class="our-col good">✓ OpenClaw 12時間</td>
+            <td class="bad">× 概念のみ</td>
+            <td class="bad">× 概念のみ</td>
+            <td class="bad">△ 触れる程度</td>
+          </tr>
+          <tr>
+            <td class="row-label">ハンズオン比率</td>
+            <td class="our-col good">60%（実習中心）</td>
+            <td class="bad">20-30%</td>
+            <td class="bad">40%</td>
+            <td class="bad">30-50%</td>
+          </tr>
+          <tr>
+            <td class="row-label">伴走サポート</td>
+            <td class="our-col good">1年間 Slack</td>
+            <td class="bad">なし</td>
+            <td class="bad">なし</td>
+            <td class="bad">一部</td>
+          </tr>
+          <tr>
+            <td class="row-label">助成金対応</td>
+            <td class="our-col good">75%+賃金助成</td>
+            <td class="bad">△ 一部</td>
+            <td class="bad">△ 一部</td>
+            <td class="bad">△ 一部</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-summary fade-in">
+      <span style="color:var(--blue-electric);">Claude特化 × OpenClaw実装 × オムニバス × 1年伴走</span><br>
+      を同時実現するのは弊社のみ。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   CEO MESSAGE
+============================================ -->
+<section class="section ceo-section" id="about-us">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="label-tag">Message</span>
+      <h2 class="heading-lg">代表メッセージ</h2>
+    </div>
+    <div class="ceo-grid">
+      <div class="ceo-card fade-in">
+        <div class="ceo-avatar">👤</div>
+        <div class="ceo-name">小貫 太秀</div>
+        <div class="ceo-title">代表取締役 / Hiroyoshi Onuki<br>株式会社SoloptiLink（ソルオプティリンク）</div>
+        <div class="ceo-tagline">「現場で証明できない戦略は、戦略ではない」</div>
+        <div style="height: 1px; background: var(--border); margin: 20px 0;"></div>
+        <div class="ceo-career">
+          <div class="ceo-career-item">
+            <div class="age">19〜</div>
+            <div class="desc">不動産業界 営業職。個人売上約5億円達成。「営業は科学できる」と確信。</div>
+          </div>
+          <div class="ceo-career-item">
+            <div class="age">21〜28</div>
+            <div class="desc">事業コンサル会社で営業代行組織を構築。約60社の支援、成果を3〜6倍にする手法を体系化。</div>
+          </div>
+          <div class="ceo-career-item">
+            <div class="age">現在</div>
+            <div class="desc">株式会社SoloptiLink設立。AI技術×営業ノウハウを融合した人材育成事業を展開。</div>
+          </div>
+        </div>
+      </div>
+      <div class="ceo-message fade-in fade-in-delay-1">
+        <div class="ceo-message-text">
+          「研修は受けたけど、現場では誰も使っていない」。<br><br>
+          それは、研修が『ツールの使い方』止まりだからです。<br><br>
+          私たちの研修は、1年間の伴走で『学んだその日から、業務が変わる』体験を提供します。<br><br>
+          <span style="color:var(--blue-electric);">「現場で証明できない戦略は、戦略ではない」</span><br><br>
+          だからこそ、実務・成果物・定着支援に徹底的にこだわっています。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   FINAL CTA
+============================================ -->
+<section class="final-cta" id="cta">
+  <div class="container">
+    <div class="final-cta-inner">
+      <span class="label-tag" style="margin: 0 auto 24px;">Get Started</span>
+      <h2 class="final-cta-title">御社のAI活用、<br><span class="text-blue">研修だけ</span>で終わらせません。</h2>
+      <p class="final-cta-sub">
+        AIを使える組織から、AIに任せられる組織へ。<br>
+        今お申込みいただくと、夏には研修開始 → 業務に効くAI人材が育つ秋へ。
+      </p>
+      <div class="final-cta-buttons">
+        <a href="https://soloptilink.com" target="_blank" class="btn-primary" style="min-width:280px; font-size:17px; padding:20px 40px;">
+          ▶ 無料相談を予約する（30分）
+        </a>
+        <a href="https://soloptilink.com" target="_blank" class="btn-secondary" style="min-width:240px;">
+          助成金シミュレーションを依頼
+        </a>
+      </div>
+      <div class="final-cta-note">
+        <span class="final-cta-note-item">対象：社員10名以上</span>
+        <span class="final-cta-note-item">オンライン対応可</span>
+        <span class="final-cta-note-item">全国対応</span>
+        <span class="final-cta-note-item">助成金申請サポートあり</span>
+        <span class="final-cta-note-item">1年間Slack伴走付き</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+   FOOTER
+============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Solopti<span>Link</span></div>
+        <div class="footer-tagline">株式会社SoloptiLink（ソルオプティリンク）<br>AI技術 × 営業ノウハウで、現場を変える人材育成。</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://soloptilink.com" target="_blank">公式サイト</a>
+        <a href="#about">サービス概要</a>
+        <a href="#course">プログラム</a>
+        <a href="#subsidy">助成金について</a>
+        <a href="#cta">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 SoloptiLink, Inc. All rights reserved.</div>
+      <div class="footer-badge">AI Reskilling Training</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+   JAVASCRIPT
+============================================ -->
+<script>
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// FADE IN OBSERVER
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+fadeEls.forEach(el => observer.observe(el));
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
