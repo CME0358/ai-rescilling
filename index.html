@@ -1359,18 +1359,19 @@ body::before {
 .ceo-photo-wrap {
   position: relative;
   width: 100%;
+  min-height: 480px;
   overflow: hidden;
   background: linear-gradient(180deg, #f0f4ff 0%, #dce6f5 50%, #c8d8ef 100%);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
 }
 .ceo-photo-wrap img {
-  width: 88%;
-  max-width: 340px;
-  height: auto;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 130%;
+  max-width: none;
   display: block;
-  position: relative;
   z-index: 1;
   filter: drop-shadow(0 8px 24px rgba(0,168,255,0.18));
 }
